@@ -15,17 +15,13 @@ For documentation on using rustty, see https://github.com/cpjreynolds/rustty
 
 ## Design Philosophy
 
-Oxide is built on the philosophy that all GUI elements begin as a _Widget_, and can later be specialized for certain task. By
-providing a common ancestor for ALL UI components, Oxide can generalize the components interact with each other and create
-an easily extensible interface for developers. To visualize this relationship, see fig 1 below
+Oxide is built on the philosophy that all GUI elements begin as a _Widget_, and can later be specialized for certain task. By providing a common ancestor for ALL UI components, Oxide can generalize the components interact with each other and create an easily extensible interface for developers. To visualize this relationship, see fig 1 below
 
+![fig 1](https://i.imgur.com/fX2mggD.png)
 
+The above is not a 100% accurate UML diagram (some arbitrary information and relationships were left out), but gives you a high level overview of how all UI elements are connected. A _Widget_ provides all basic functionality needed for the most basic UI element, like drawing, resizing, and aligning. Buttons are a more advanced _Widget_ and thus inherit from _Button_, which is a widget with additional functionality.
 
-There are a couple of key traits in this redesign currently: Widget, Button, and Layout.
-
-Widgets are the core of the API, all frontend structs offered to the user inherit from Widget. This generalizes the way structs interact with each other and makes encapsulation and specialized widgets easier to develop. Button and Layout are specialized Widgets that offer new functionality that is distinguishable.
-
-Frontend structs all offer a similar API (see Implementation section for a list). This makes developing new widgets easier and interactions less buggy (we don't need to worry about a specific widget interacting with another specific widget, because they are generalized by their traits).
+Information above is not particularily useful for an application using only the default UI components provided, but will come in handy when designing custom widgets.
 
 ### Widgets
 
