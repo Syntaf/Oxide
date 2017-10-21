@@ -10,13 +10,13 @@ mod vlayout;
 mod canvas;
 
 
-// pub use canvas::Canvas;
-// pub use dialog::Dialog;
-// pub use stdbutton::StdButton;
-// pub use checkbutton::CheckButton;
-// pub use hlayout::HorizontalLayout;
-// pub use vlayout::VerticalLayout;
-// pub use label::Label;
+pub use canvas::Canvas;
+pub use dialog::Dialog;
+pub use stdbutton::StdButton;
+pub use checkbutton::CheckButton;
+pub use hlayout::HorizontalLayout;
+pub use vlayout::VerticalLayout;
+pub use label::Label;
 
 #[cfg(test)]
 mod tests {
