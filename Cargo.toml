@@ -2,6 +2,12 @@
 name = "oxide"
 version = "0.1.0"
 authors = ["Syntaf <Gmercer015@gmail.com>"]
+description = "An easy-to-use and extensible GUI library for Rust terminal applications using rustty"
+repository = "https://github.com/Syntaf/Oxide"
+readme = "README.md"
+keywords = ["graphics", "terminal", "GUI", "rustty"]
+categories = ["gui", "games"]
+license = "GPL-3.0"
 
 [dependencies]
 rustty = "*"
