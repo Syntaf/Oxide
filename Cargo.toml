@@ -1,6 +1,7 @@
 [package]
-name = "Oxide"
+name = "oxide"
 version = "0.1.0"
 authors = ["Syntaf <Gmercer015@gmail.com>"]
 
 [dependencies]
+rustty = "*"
