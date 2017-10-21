@@ -16,7 +16,7 @@ use core::{
 /// # Examples
 ///
 /// ```ignore
-/// use rustty::ui::Canvas;
+/// use oxide::Canvas;
 ///
 /// let mut canvas = Canvas::new(60, 10);
 ///
@@ -40,7 +40,7 @@ impl Canvas {
     /// # Examples
     ///
     /// ```
-    /// use rustty::ui::Canvas;
+    /// use oxide::Canvas;
     ///
     /// let mut canvas = Canvas::new(60, 10); 
     /// ```
@@ -56,7 +56,7 @@ impl Canvas {
     /// # Examples
     ///
     /// ```
-    /// use rustty::ui::Canvas;
+    /// use oxide::Canvas;
     ///
     /// let mut canvas = Canvas::new(60, 10);
     ///

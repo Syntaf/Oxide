@@ -22,8 +22,8 @@ use label::Label;
 /// # Examples
 ///
 /// ```
-/// use rustty::ui::core::{VerticalAlign, HorizontalAlign, ButtonResult, Widget};
-/// use rustty::ui::{Dialog, StdButton};
+/// use oxide::core::{VerticalAlign, HorizontalAlign, ButtonResult, Widget};
+/// use oxide::{Dialog, StdButton};
 ///
 /// let mut maindlg = Dialog::new(60, 10);
 ///
@@ -49,7 +49,7 @@ impl Dialog {
     /// # Examples
     ///
     /// ```
-    /// use rustty::ui::Dialog;
+    /// use oxide::Dialog;
     ///
     /// let mut maindlg = Dialog::new(60, 10);
     /// ```
@@ -68,8 +68,8 @@ impl Dialog {
     /// # Examples
     ///
     /// ```
-    /// use rustty::ui::core::{Widget, ButtonResult, HorizontalAlign, VerticalAlign};
-    /// use rustty::ui::{Dialog, StdButton};
+    /// use oxide::core::{Widget, ButtonResult, HorizontalAlign, VerticalAlign};
+    /// use oxide::{Dialog, StdButton};
     /// let mut maindlg = Dialog::new(60, 10);
     ///
     /// let mut b1 = StdButton::new("Quit", 'q', ButtonResult::Ok);
@@ -90,8 +90,8 @@ impl Dialog {
     /// # Examples
     ///
     /// ```
-    /// use rustty::ui::core::{HorizontalAlign, VerticalAlign, ButtonResult, Button, Widget};
-    /// use rustty::ui::{Dialog, StdButton, VerticalLayout};
+    /// use oxide::core::{HorizontalAlign, VerticalAlign, ButtonResult, Button, Widget};
+    /// use oxide::{Dialog, StdButton, VerticalLayout};
     ///
     /// let mut maindlg = Dialog::new(60, 10);
     /// let b1 = StdButton::new("Foo", 'f', ButtonResult::Ok);
@@ -117,8 +117,8 @@ impl Dialog {
     /// # Examples
     ///
     /// ```
-    /// use rustty::ui::core::{HorizontalAlign, VerticalAlign, Widget};
-    /// use rustty::ui::{Dialog, Label};
+    /// use oxide::core::{HorizontalAlign, VerticalAlign, Widget};
+    /// use oxide::{Dialog, Label};
     ///
     /// let mut maindlg = Dialog::new(60, 10);
     /// let mut lbl = Label::from_str("Foo");

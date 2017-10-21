@@ -14,8 +14,8 @@ use core::{
 /// # Examples
 ///
 /// ```
-/// use rustty::ui::core::{VerticalAlign, HorizontalAlign, Widget};
-/// use rustty::ui::{Dialog, Label};
+/// use oxide::core::{VerticalAlign, HorizontalAlign, Widget};
+/// use oxide::{Dialog, Label};
 ///
 /// let mut maindlg = Dialog::new(60, 10);
 ///
@@ -43,7 +43,7 @@ impl Label {
     /// # Examples
     ///
     /// ```
-    /// use rustty::ui::Label;
+    /// use oxide::Label;
     ///
     /// let mut label = Label::new(60, 10);
     /// ```
@@ -67,7 +67,7 @@ impl Label {
     /// # Examples
     ///
     /// ```
-    /// use rustty::ui::Label;
+    /// use oxide::Label;
     ///
     /// let mut label1 = Label::from_str("This is a label");    // label is size (15x1)
     ///
@@ -95,7 +95,7 @@ impl Label {
     /// # Examples
     ///
     /// ```
-    /// use rustty::ui::Label;
+    /// use oxide::Label;
     ///
     /// let mut label1 = Label::from_str("This is a label");    // label is size (15x1)
     ///
@@ -122,8 +122,8 @@ impl Label {
     /// # Examples
     ///
     /// ```
-    /// use rustty::ui::core::{HorizontalAlign, VerticalAlign};
-    /// use rustty::ui::Label;
+    /// use oxide::core::{HorizontalAlign, VerticalAlign};
+    /// use oxide::Label;
     ///
     /// let mut label = Label::new(20, 3);
     /// label.set_text("Centered");
@@ -146,8 +146,8 @@ impl Label {
     ///
     /// ```
     /// use rustty::HasSize;
-    /// use rustty::ui::core::Widget;
-    /// use rustty::ui::Label;
+    /// use oxide::core::Widget;
+    /// use oxide::Label;
     ///
     /// let mut label1 = Label::new(20, 3);
     /// label1.set_text("Initial text");

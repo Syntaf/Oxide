@@ -18,8 +18,8 @@ use core::{
 /// # Examples
 ///
 /// ```
-/// use rustty::ui::core::{HorizontalAlign, VerticalAlign, ButtonResult, Widget};
-/// use rustty::ui::{Dialog, StdButton};
+/// use oxide::core::{HorizontalAlign, VerticalAlign, ButtonResult, Widget};
+/// use oxide::{Dialog, StdButton};
 ///
 /// let mut dlg = Dialog::new(60, 10);
 ///
@@ -48,8 +48,8 @@ impl StdButton {
     /// # Examples
     ///
     /// ```
-    /// use rustty::ui::core::ButtonResult;
-    /// use rustty::ui::StdButton;
+    /// use oxide::core::ButtonResult;
+    /// use oxide::StdButton;
     ///
     /// let mut b1 = StdButton::new("Foo", 'f', ButtonResult::Ok);
     /// ```

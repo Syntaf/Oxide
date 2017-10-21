@@ -20,8 +20,8 @@ use core::{
 /// # Examples
 ///
 /// ```
-/// use rustty::ui::core::{HorizontalAlign, VerticalAlign, ButtonResult, Widget, Button};
-/// use rustty::ui::{Dialog, StdButton, HorizontalLayout};
+/// use oxide::core::{HorizontalAlign, VerticalAlign, ButtonResult, Widget, Button};
+/// use oxide::ui::{Dialog, StdButton, HorizontalLayout};
 ///
 /// let mut maindlg = Dialog::new(60, 10);
 ///
@@ -53,8 +53,8 @@ impl HorizontalLayout {
     /// # Examples
     ///
     /// ```
-    /// use rustty::ui::core::{ButtonResult, Button};
-    /// use rustty::ui::{StdButton, HorizontalLayout};
+    /// use oxide::core::{ButtonResult, Button};
+    /// use oxide::{StdButton, HorizontalLayout};
     ///
     /// let b1 = StdButton::new("Quit", 'q', ButtonResult::Ok);
     /// let b2 = StdButton::new("Foo!", 'f', ButtonResult::Custom(1));

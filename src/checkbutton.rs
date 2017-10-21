@@ -30,8 +30,8 @@ pub struct CheckButton {
 /// # Examples
 ///
 /// ```
-/// use rustty::ui::core::{HorizontalAlign, VerticalAlign, ButtonResult, Widget, Button};
-/// use rustty::ui::{Dialog, CheckButton};
+/// use oxide::core::{HorizontalAlign, VerticalAlign, ButtonResult, Widget, Button};
+/// use oxide::{Dialog, CheckButton};
 ///
 /// let mut dlg = Dialog::new(60, 10);
 ///
@@ -54,8 +54,8 @@ impl CheckButton {
     /// # Examples
     ///
     /// ```
-    /// use rustty::ui::core::ButtonResult;
-    /// use rustty::ui::CheckButton;
+    /// use oxide::core::ButtonResult;
+    /// use oxide::CheckButton;
     ///
     /// let mut b1 = CheckButton::new("Foo", 'f', ButtonResult::Ok);
     /// ```
