@@ -23,48 +23,45 @@ The above is not a 100% accurate UML diagram (some arbitrary information and rel
 
 Information above is not particularily useful for an application using only the default UI components provided, but will come in handy when designing custom widgets.
 
-### Widgets
+### Widget based programming
 
-
-fe has a couple key concepts: generalized widgets and user customization. The design of the widgets are inspired by 
-Tkinter and aims to have a similar form and function. fe supplies a basic number of widgets that are useful for 
-designing application, but you can easily write your own widgets using the traits available.
+If you've ever used Pythons Tkinter, you'll find Oxide has a similar structure to it (albeit less advanced).
 
 To get started with widgets, your most basic and most widely used container will be a `Dialog`. A dialog's job is to
 mesh widgets together and act as a aggregator, a widget which *takes in* other widgets for easier management. Creation
 of a dialog is simple:
 
 ```rust
-let mut dlg = Dialog::new(60, 10);	// create dialog 60 columns wide, 10 rows long
-dlg.draw_box();				// draw border
+let mut dlg = Dialog::new(60, 10);	// create dialog 60 terminal columns wide, 10 terminal rows long
+dlg.draw_box();				        // draw the border or the dialog
 ```
 
-This dialog will now allow us to aggregate widgets we wish to bundle together, say labels or buttons:
-
+Now that we have a dialog, we can add UI elements into it:
 
 ```rust
-let mut b1 = StdButton::new("Quit", 'q', ButtonResult::Ok);		// Create button
+let mut b1 = StdButton::new("Quit", 'q', ButtonResult::Ok);		        // Create a stanard button
 b1.pack(&maindlg, HorizontalAlign::Left, VerticalAlign::Bottom, (4,2));	// Align button within dialog
 
-dlg.add_button(b1);	// dlg now takes ownership of b1
+// move b1 into dlg, giving ownership to the dialog
+dlg.add_button(b1);	
 ```
 
-Great! now when we want to poll events, we can use dialogs to forward events to our buttons
+Great! now we have a dialog window with a button inside of it, which we can use during the event polling stage inside our main loop
 
 ```rust
-// Poll events
-while let Some(Event::Key(ch)) = terminal.get_event(0).unwrap() {
+// Poll events instantly, no delay
+while let Some(Event::Key(ch)) = terminal.get_event(Duration::from_secs(0)).unwrap() {
+    // Check to see if the event was a button press for anything inside dlg
     match dlg.result_for_key(ch) {
         Some(ButtonResult::Ok) => break 'main,
-	_ => {},
+        _ => {},
     }
 }
 ```
 
-Widgets can still function as independent objects, but Dialogs helps bring everything together and let you
-encapsulate your data for better abstraction.  
+Widgets can still function as independent objects, but Dialogs helps bring everything together so you can organize your UI better.
 
-A good way to understand fe widgets are that they are simply specialized frames that *own* an area of cells, 
+A good way to understand oxide widgets are that they are simply specialized frames that *own* an area of cells, 
 and perform actions based on that specliazation. At their core, widgets implement a frame and some basic trait 
 specialization. Take for example a label:
 
@@ -77,7 +74,7 @@ pub struct Label {
 }
 ```
 
-Our widget in this case has a frame, and uses `text` for drawing into that frame. `Frames` simply represent an area 
+Our widget in this case has a frame, and uses `text` for drawing into that frame. `Frames` represent an area 
 that a widget owns. Multiple widgets can own the same cells, but each widget is only concered with itself. In the
 case of a Label, we want to write text to an area of cells. Like other widgets, this Label can be owned by a dialog,
 packed, and drawn to the screen. 
