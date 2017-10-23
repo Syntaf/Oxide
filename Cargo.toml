@@ -1,5 +1,5 @@
 [package]
-name = "oxide"
+name = "rustty-oxide"
 version = "0.1.0"
 authors = ["Syntaf <Gmercer015@gmail.com>"]
 description = "An easy-to-use and extensible GUI library for Rust terminal applications using rustty"
