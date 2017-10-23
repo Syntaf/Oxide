@@ -15,60 +15,53 @@ For documentation on using rustty, see https://github.com/cpjreynolds/rustty
 
 ## Design Philosophy
 
-Oxide is built on the philosophy that all GUI elements begin as a _Widget_, and can later be specialized for certain task. By
-providing a common ancestor for ALL UI components, Oxide can generalize the components interact with each other and create
-an easily extensible interface for developers. To visualize this relationship, see fig 1 below
+Oxide is built on the philosophy that all GUI elements begin as a _Widget_, and can later be specialized for certain task. By providing a common ancestor for ALL UI components, Oxide can generalize the components interact with each other and create an easily extensible interface for developers. To visualize this relationship, see fig 1 below
 
+![fig 1](https://i.imgur.com/fX2mggD.png)
 
+The above is not a 100% accurate UML diagram (some arbitrary information and relationships were left out), but gives you a high level overview of how all UI elements are connected. A _Widget_ provides all basic functionality needed for the most basic UI element, like drawing, resizing, and aligning. Buttons are a more advanced _Widget_ and thus inherit from _Button_, which is a widget with additional functionality.
 
-There are a couple of key traits in this redesign currently: Widget, Button, and Layout.
+Information above is not particularily useful for an application using only the default UI components provided, but will come in handy when designing custom widgets.
 
-Widgets are the core of the API, all frontend structs offered to the user inherit from Widget. This generalizes the way structs interact with each other and makes encapsulation and specialized widgets easier to develop. Button and Layout are specialized Widgets that offer new functionality that is distinguishable.
+## Widget based programming
 
-Frontend structs all offer a similar API (see Implementation section for a list). This makes developing new widgets easier and interactions less buggy (we don't need to worry about a specific widget interacting with another specific widget, because they are generalized by their traits).
-
-### Widgets
-
-
-fe has a couple key concepts: generalized widgets and user customization. The design of the widgets are inspired by 
-Tkinter and aims to have a similar form and function. fe supplies a basic number of widgets that are useful for 
-designing application, but you can easily write your own widgets using the traits available.
+If you've ever used Pythons Tkinter, you'll find Oxide has a similar structure to it (albeit less advanced).
 
 To get started with widgets, your most basic and most widely used container will be a `Dialog`. A dialog's job is to
 mesh widgets together and act as a aggregator, a widget which *takes in* other widgets for easier management. Creation
 of a dialog is simple:
 
 ```rust
-let mut dlg = Dialog::new(60, 10);	// create dialog 60 columns wide, 10 rows long
-dlg.draw_box();				// draw border
+let mut dlg = Dialog::new(60, 10);	// create dialog 60 terminal columns wide, 10 terminal rows long
+dlg.draw_box();				        // draw the border or the dialog
 ```
 
-This dialog will now allow us to aggregate widgets we wish to bundle together, say labels or buttons:
-
+Now that we have a dialog, we can add UI elements into it:
 
 ```rust
-let mut b1 = StdButton::new("Quit", 'q', ButtonResult::Ok);		// Create button
+let mut b1 = StdButton::new("Quit", 'q', ButtonResult::Ok);		        // Create a stanard button
 b1.pack(&maindlg, HorizontalAlign::Left, VerticalAlign::Bottom, (4,2));	// Align button within dialog
 
-dlg.add_button(b1);	// dlg now takes ownership of b1
+// move b1 into dlg, giving ownership to the dialog
+dlg.add_button(b1);	
 ```
 
-Great! now when we want to poll events, we can use dialogs to forward events to our buttons
+Great! now we have a dialog window with a button inside of it, which we can use during the event polling stage inside our main loop
 
 ```rust
-// Poll events
-while let Some(Event::Key(ch)) = terminal.get_event(0).unwrap() {
+// Poll events instantly, no delay
+while let Some(Event::Key(ch)) = terminal.get_event(Duration::from_secs(0)).unwrap() {
+    // Check to see if the event was a button press for anything inside dlg
     match dlg.result_for_key(ch) {
         Some(ButtonResult::Ok) => break 'main,
-	_ => {},
+        _ => {},
     }
 }
 ```
 
-Widgets can still function as independent objects, but Dialogs helps bring everything together and let you
-encapsulate your data for better abstraction.  
+Widgets can still function as independent objects, but Dialogs helps bring everything together so you can organize your UI better.
 
-A good way to understand fe widgets are that they are simply specialized frames that *own* an area of cells, 
+A good way to understand oxide widgets are that they are simply specialized frames that *own* an area of cells, 
 and perform actions based on that specliazation. At their core, widgets implement a frame and some basic trait 
 specialization. Take for example a label:
 
@@ -81,7 +74,7 @@ pub struct Label {
 }
 ```
 
-Our widget in this case has a frame, and uses `text` for drawing into that frame. `Frames` simply represent an area 
+Our widget in this case has a frame, and uses `text` for drawing into that frame. `Frames` represent an area 
 that a widget owns. Multiple widgets can own the same cells, but each widget is only concered with itself. In the
 case of a Label, we want to write text to an area of cells. Like other widgets, this Label can be owned by a dialog,
 packed, and drawn to the screen. 
@@ -89,6 +82,15 @@ packed, and drawn to the screen.
 Any widget implements basic functionality: drawing, packing, outlining, resizing, and returning the *frame*. In
 most cases the actual widget is the frame, and structs like `Label` or `Button` *wrap* a frame to provide special
 functionality.
+
+## Creating custom widgets
+
+In scenarios where the default set of UI components are not sufficient in covering your GUI needs, Oxide allows you to easily extend existing widgets, or even create entirely new widgets using the core traits.
+
+Lets take the scenario that StdButton just doesn't cut it for you, and you need a button that **always** prints text as red. in *any* custom widget you create, you'll need the following requirements:
+
+1. The new component contains a _oxide::core::Frame_ or a _oxide::core::Canvas_
+2. The new component implements _Widget_
 
 ## Usage Guide
 
