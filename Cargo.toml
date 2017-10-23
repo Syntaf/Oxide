@@ -10,4 +10,4 @@ categories = ["gui", "games"]
 license = "GPL-3.0"
 
 [dependencies]
-rustty = "*"
+rustty = "0.1.12"
