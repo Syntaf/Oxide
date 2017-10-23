@@ -83,6 +83,10 @@ Any widget implements basic functionality: drawing, packing, outlining, resizing
 most cases the actual widget is the frame, and structs like `Label` or `Button` *wrap* a frame to provide special
 functionality.
 
+### Creating custom widgets
+
+In scenarios where the default set of UI components are not sufficient in covering your GUI needs, Oxide allows you to easily extend existing widgets, or even create entirely new widgets using the core traits.
+
 ## Usage Guide
 
 Examples and usage suggestions can be found in the [API
