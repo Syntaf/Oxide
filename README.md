@@ -23,7 +23,7 @@ The above is not a 100% accurate UML diagram (some arbitrary information and rel
 
 Information above is not particularily useful for an application using only the default UI components provided, but will come in handy when designing custom widgets.
 
-### Widget based programming
+## Widget based programming
 
 If you've ever used Pythons Tkinter, you'll find Oxide has a similar structure to it (albeit less advanced).
 
@@ -83,9 +83,14 @@ Any widget implements basic functionality: drawing, packing, outlining, resizing
 most cases the actual widget is the frame, and structs like `Label` or `Button` *wrap* a frame to provide special
 functionality.
 
-### Creating custom widgets
+## Creating custom widgets
 
 In scenarios where the default set of UI components are not sufficient in covering your GUI needs, Oxide allows you to easily extend existing widgets, or even create entirely new widgets using the core traits.
+
+Lets take the scenario that StdButton just doesn't cut it for you, and you need a button that **always** prints text as red. in *any* custom widget you create, you'll need the following requirements:
+
+1. The new component contains a _oxide::core::Frame_ or a _oxide::core::Canvas_
+2. The new component implements _Widget_
 
 ## Usage Guide
 
