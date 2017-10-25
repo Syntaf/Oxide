@@ -2,6 +2,8 @@
 
 An easy-to-use and extensible GUI library for Rust terminal applications.
 
+**Note**: Oxide has a work-in-progress Wiki! Click the wiki in the menu above for details tutorials on using Oxide and more information behind the library. The below information is only a small excerpt from the wiki.
+
 ## Intro
 
 Oxide is an add-on extension for [rustty](https://github.com/cpjreynolds/rustty) that provides a widget based API 
